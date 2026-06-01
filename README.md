@@ -95,7 +95,7 @@ mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Run this automated one-liner from the directory you want to install your project.
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/onelinesetup | bash -s -- adobe-commerce.test enterprise 2.4.8-p3
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/onelinesetup | bash -s -- adobe-commerce.test enterprise 2.4.8-p3
 ```
 
 The `adobe-commerce.test` above defines the hostname to use, `enterprise` is the edition, and `2.4.8-p3` defines the version to install. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
@@ -122,7 +122,7 @@ mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template | bash
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template | bash
 
 # Download the version of Adobe Commerce you want to use with:
 bin/download enterprise 2.4.8-p3
@@ -154,7 +154,7 @@ mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template | bash
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template | bash
 
 # Take a backup of your existing database:
 bin/mysqldump > ~/Sites/existing/magento.sql
