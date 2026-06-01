@@ -1,0 +1,71 @@
+services:
+  app:
+    volumes: &commercevolumes
+      ## Commented out modules are already in vendor image (Adobe Commerce 2.4.8+)
+      ## Uncomment to develop locally — overrides the vendor version.
+
+      # Services Connector (in vendor: magento/services-connector)
+      #- ./extensions/services-connector/ServicesConnector:/var/www/html/app/code/Magento/ServicesConnector:consistent
+
+      # Services ID (in vendor: magento/module-services-id, module-services-id-graph-ql-server, module-services-id-layout)
+      #- ./extensions/services-id/ServicesId:/var/www/html/app/code/Magento/ServicesId:consistent
+      #- ./extensions/services-id/ServicesIdGraphQlServer:/var/www/html/app/code/Magento/ServicesIdGraphQlServer:consistent
+      #- ./extensions/services-id/ServicesIdLayout:/var/www/html/app/code/Magento/ServicesIdLayout:consistent
+
+      # DataExporter (in vendor: magento/module-data-exporter)
+      #- ./extensions/commerce-data-export/DataExporter:/var/www/html/app/code/Magento/DataExporter:consistent
+
+      # SaaSCommon (in vendor: magento/module-saas-common)
+      #- ./extensions/saas-export/SaaSCommon:/var/www/html/app/code/Magento/SaaSCommon:consistent
+
+      # Data Solutions BFF (in vendor: magento/module-graph-ql-server, magento/module-admin-graph-ql-server)
+      #- ./extensions/data-solutions-magento-bff/GraphQlServer:/var/www/html/app/code/Magento/GraphQlServer:consistent
+      #- ./extensions/data-solutions-magento-bff/AdminGraphQlServer:/var/www/html/app/code/Magento/AdminGraphQlServer:consistent
+      #- ./extensions/data-solutions-magento-bff/ExternalSchemaGraphQlServer:/var/www/html/app/code/Magento/ExternalSchemaGraphQlServer:consistent
+
+      ## Modules NOT in vendor — always mounted from local clones.
+
+      # Data Services (event collection)
+      - ./extensions/data-services/DataServices:/var/www/html/app/code/Magento/DataServices:consistent
+      - ./extensions/data-services/DataServicesMultishipping:/var/www/html/app/code/Magento/DataServicesMultishipping:consistent
+
+      # Commerce Data Export
+      - ./extensions/commerce-data-export/CatalogDataExporter:/var/www/html/app/code/Magento/CatalogDataExporter:consistent
+      - ./extensions/commerce-data-export/CatalogInventoryDataExporter:/var/www/html/app/code/Magento/CatalogInventoryDataExporter:consistent
+      - ./extensions/commerce-data-export/CatalogUrlRewriteDataExporter:/var/www/html/app/code/Magento/CatalogUrlRewriteDataExporter:consistent
+      - ./extensions/commerce-data-export/ConfigurableProductDataExporter:/var/www/html/app/code/Magento/ConfigurableProductDataExporter:consistent
+      - ./extensions/commerce-data-export/BundleProductDataExporter:/var/www/html/app/code/Magento/BundleProductDataExporter:consistent
+      - ./extensions/commerce-data-export/ParentProductDataExporter:/var/www/html/app/code/Magento/ParentProductDataExporter:consistent
+      - ./extensions/commerce-data-export/ProductVariantDataExporter:/var/www/html/app/code/Magento/ProductVariantDataExporter:consistent
+      # QueryXml (in vendor: magento/module-query-xml)
+      #- ./extensions/commerce-data-export/QueryXml:/var/www/html/app/code/Magento/QueryXml:consistent
+      - ./extensions/commerce-data-export/ScopesDataExporter:/var/www/html/app/code/Magento/ScopesDataExporter:consistent
+
+      # Commerce Data Export EE
+      - ./extensions/commerce-data-export-ee/ProductOverrideDataExporter:/var/www/html/app/code/Magento/ProductOverrideDataExporter:consistent
+
+      # SaaS Export
+      - ./extensions/saas-export/SaaSCatalog:/var/www/html/app/code/Magento/SaaSCatalog:consistent
+      - ./extensions/saas-export/SaaSScopes:/var/www/html/app/code/Magento/SaaSScopes:consistent
+
+      # Product Recommendations
+      - ./extensions/product-recommendations/ProductRecommendationsLayout:/var/www/html/app/code/Magento/ProductRecommendationsLayout:consistent
+      - ./extensions/product-recommendations/PageBuilderProductRecommendations:/var/www/html/app/code/Magento/PageBuilderProductRecommendations:consistent
+      - ./extensions/product-recommendations/VisualProductRecommendations:/var/www/html/app/code/Magento/VisualProductRecommendations:consistent
+
+      # Product Recommendations Admin
+      - ./extensions/product-recommendations-admin/ProductRecommendationsAdmin:/var/www/html/app/code/Magento/ProductRecommendationsAdmin:consistent
+      - ./extensions/product-recommendations-admin/ProductRecommendationsSyncAdmin:/var/www/html/app/code/Magento/ProductRecommendationsSyncAdmin:consistent
+
+      # Catalog Sync Admin
+      - ./extensions/catalog-sync-admin/CatalogSyncAdmin:/var/www/html/app/code/Magento/CatalogSyncAdmin:consistent
+
+      # Live Search
+      - ./extensions/magento-live-search/LiveSearch:/var/www/html/app/code/Magento/LiveSearch:consistent
+      - ./extensions/magento-live-search/LiveSearchAdapter:/var/www/html/app/code/Magento/LiveSearchAdapter:consistent
+      - ./extensions/magento-live-search/LiveSearchStorefrontPopover:/var/www/html/app/code/Magento/LiveSearchStorefrontPopover:consistent
+      - ./extensions/magento-live-search/LiveSearchMetrics:/var/www/html/app/code/Magento/LiveSearchMetrics:consistent
+      - ./extensions/magento-live-search/LiveSearchTerms:/var/www/html/app/code/Magento/LiveSearchTerms:consistent
+
+  phpfpm:
+    volumes: *commercevolumes

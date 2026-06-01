@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -o errexit
+
+# shellcheck source=../env/commerce.env
+[ -f "env/commerce.env" ] && source "env/commerce.env"
+
+EDITION=${COMMERCE_MAGENTO_EDITION:-enterprise}
+VERSION=${COMMERCE_MAGENTO_VERSION:-2.4.8-p3}
+DOMAIN="${1:-adobe-commerce.test}"
+
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+echo -e "${BLUE}>>> Installing Adobe Commerce ${EDITION} ${VERSION}...${NC}"
+
+echo -e "${BLUE}>>> Tearing down existing environment...${NC}"
+bin/removeall || true
+rm -rf src
+
+echo -e "${BLUE}>>> Cloning Data Solutions extension repos (before Docker start — required for compose bind mounts)...${NC}"
+rm -rf extensions
+mkdir -p extensions
+
+git clone git@github.com:magento-commerce/services-connector.git extensions/services-connector
+git clone git@github.com:magento-commerce/services-id.git extensions/services-id
+git clone git@github.com:magento-commerce/data-services.git extensions/data-services
+git clone git@github.com:magento-commerce/data-solutions-magento-bff.git extensions/data-solutions-magento-bff
+git clone git@github.com:magento-commerce/saas-export.git extensions/saas-export
+git clone git@github.com:magento-commerce/commerce-data-export.git extensions/commerce-data-export
+git clone git@github.com:magento-commerce/commerce-data-export-ee.git extensions/commerce-data-export-ee
+git clone git@github.com:magento-commerce/magento-product-recommendations.git extensions/product-recommendations
+git clone git@github.com:magento-commerce/magento-product-recommendations-admin.git extensions/product-recommendations-admin
+git clone git@github.com:magento-commerce/magento-catalog-sync-admin.git extensions/catalog-sync-admin
+git clone git@github.com:magento-commerce/magento-live-search.git extensions/magento-live-search
+
+echo -e "${BLUE}>>> Downloading Adobe Commerce (${EDITION} edition, ${VERSION})...${NC}"
+bin/download "${EDITION}" "${VERSION}"
+
+echo -e "${BLUE}>>> Running Magento setup...${NC}"
+bin/setup "${DOMAIN}"
+
+echo -e "${BLUE}>>> Disabling Two-Factor Authentication for development...${NC}"
+bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+bin/magento setup:upgrade
+bin/magento cache:flush
+
+echo -e "${BLUE}>>> Installing Composer dependencies for extensions...${NC}"
+bin/composer require firebase/php-jwt
+bin/composer require gmostafa/php-graphql-client
+
+echo -e "${BLUE}>>> Enabling all modules and compiling...${NC}"
+bin/restart
+bin/magento module:enable --all
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento cache:flush
+
+echo -e "${GREEN}>>> Adobe Commerce ${EDITION} ${VERSION} installed successfully.${NC}"

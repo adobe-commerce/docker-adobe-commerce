@@ -1,11 +1,11 @@
-<h1 align="center">markshust/docker-magento</h1>
+<h1 align="center">adobe-commerce/docker-adobe-commerce</h1>
 
 <div align="center">
-  <p>Mark Shust's Docker Configuration for Magento</p>
+  <p>Adobe Commerce Docker Configuration</p>
   <img src="https://img.shields.io/badge/magento-2.X-brightgreen.svg?logo=magento&longCache=true" alt="Supported Magento Versions" />
   <a href="https://hub.docker.com/r/markoshust/magento-php/" target="_blank"><img src="https://img.shields.io/docker/pulls/markoshust/magento-php.svg?label=php%20docker%20pulls" alt="Docker Hub Pulls - PHP" /></a>
   <a href="https://hub.docker.com/r/markoshust/magento-nginx/" target="_blank"><img src="https://img.shields.io/docker/pulls/markoshust/magento-nginx.svg?label=nginx%20docker%20pulls" alt="Docker Hub Pulls - Nginx" /></a>
-  <a href="https://github.com/markshust/docker-magento/graphs/commit-activity" target="_blank"><img src="https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg" alt="Maintained - Yes" /></a>
+  <a href="https://github.com/adobe-commerce/docker-adobe-commerce/graphs/commit-activity" target="_blank"><img src="https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg" alt="Maintained - Yes" /></a>
   <img src="https://img.shields.io/badge/apple%20silicon%20support-yes-brightgreen" alt="Apple Silicon Support" />
   <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
 </div>
@@ -66,70 +66,7 @@ View Dockerfiles for the latest tags:
 
 ## Free Course
 
-This course is sponsored by <a href="https://m.academy" target="_blank">M.academy</a>, the simplest way to learn Magento.
-
-<a href="https://m.academy" target="_blank"><img src="docs/macademy-logo.png" alt="M.academy"></a>
-
-A free screencast course is available (which was fully refreshed in December 2021), which details the basic usage of this project:
-
-<a href="https://m.academy/courses/set-up-magento-2-development-environment-docker" target="_blank">
-<img src="docs/set-up-magento-2-development-environment-docker-og.png" alt="Set Up a Magento 2 Development Environment with Docker" width="400"><br/>
-Set Up a Magento 2 Development Environment with Docker
-</a>
-
-### Course Curriculum
-
-#### Intro
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/36738848" target="_blank">Quick hi & welcome from Mark!</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/36738860" target="_blank">About the course format</a>
-
-#### Initial Project Setup
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9205849" target="_blank">Install Docker Desktop & configure preferences</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/8974570" target="_blank">Set up Magento with the automated onelinesetup script</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064259" target="_blank">Set up Magento manually from a custom Git branch</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9283467" target="_blank">Set up Docker for an existing Magento project</a>
-
-#### The Basics of docker-magento
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064258" target="_blank">Execute docker-magento helper scripts</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9331008" target="_blank">Start, stop, restart and check container status</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064269" target="_blank">Execute bin/magento and composer within Docker containers</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/36150902" target="_blank">Install Magento sample data</a>
-
-#### Docker Filesystem & Data Volumes
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064334" target="_blank">Understand Docker volumes & host bind mounts</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064338" target="_blank">Manage files & folders within Docker containers</a>
-
-#### PhpStorm
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9748834" target="_blank">Set up a docker-magento project in PhpStorm</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9763893" target="_blank">Set up the Magento PhpStorm plugin</a>
-
-#### Code Quality Tools
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/52640115" target="_blank">Configure PHPCS (PHP CodeSniffer) for Magento</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/52642491" target="_blank">Configure PHPCSF (PHP CodeSniffer Fixer) for Magento</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/52643314" target="_blank">Configure PHPMD (PHP Mess Detector) for Magento</a>
-
-#### Xdebug
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064478" target="_blank">Install the Xdebug helper browser plugin for Chrome & PhpStorm</a>
-- Trigger Xdebug with the `XDEBUG_SESSION` cookie (set via the Xdebug Helper browser extension) — no CLI toggle needed
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064615" target="_blank">Configure PhpStorm for Xdebug connections</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064617" target="_blank">Trigger an Xdebug breakpoint in PhpStorm</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/36677538" target="_blank">Trigger an Xdebug breakpoint for CLI commands in PhpStorm</a>
-
-#### Customize Server Configurations
-
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/36702830" target="_blank">Understand the docker-compose application structure</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/36702861" target="_blank">Increase the PHP memory limit in php.ini</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064349" target="_blank">Increase the Nginx request timeout in nginx.conf</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/36703258" target="_blank">Increase the MySQL buffer pool size with command or in my.cnf</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/9064350" target="_blank">Install a new PHP extension by building a custom Docker image</a>
-- <a href="https://courses.m.academy/courses/set-up-magento-2-development-environment-docker/lectures/14780970" target="_blank">Configure multi-store instances in Docker with Nginx</a>
+A free screencast course is available covering the basic usage of this project. See [COURSE.md](COURSE.md) for the full curriculum and lecture links.
 
 ## Usage
 
@@ -140,7 +77,7 @@ Folders:
 - `images`: Docker images for nginx and php
 - `compose`: sample setups with Docker Compose
 
-> The Magento 1 version of this development environment has been deprecated and is no longer supported. PHP 5 was used as it's base, and that version has reached end-of-life. If you still wish to use this setup, please reference [compose/magento-1 on tag 20.1.1](https://github.com/markshust/docker-magento/tree/20.1.1/compose/magento-1), but please be aware these images are no longer maintained.
+> The Magento 1 version of this development environment has been deprecated and is no longer supported. PHP 5 was used as it's base, and that version has reached end-of-life. If you still wish to use this setup, please reference [compose/magento-1 on tag 20.1.1](https://github.com/adobe-commerce/docker-adobe-commerce/tree/20.1.1/compose/magento-1), but please be aware these images are no longer maintained.
 
 ## Prerequisites
 
@@ -154,16 +91,16 @@ This configuration has been tested on Mac & Linux. Windows is supported through 
 
 ```bash
 # Create your project directory then go into it:
-mkdir -p ~/Sites/magento
+mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Run this automated one-liner from the directory you want to install your project.
-curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/onelinesetup | bash -s -- magento.test mageos 3.0.0
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/onelinesetup | bash -s -- adobe-commerce.test enterprise 2.4.8-p3
 ```
 
-The `magento.test` above defines the hostname to use, `mageos` is the edition (Mage-OS, the default), and `3.0.0` defines the version to install. Pass `community 2.4.9` (or another edition/version pair) instead to install Adobe Commerce / Magento Open Source. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
+The `adobe-commerce.test` above defines the hostname to use, `enterprise` is the edition, and `2.4.8-p3` defines the version to install. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
 
-After the one-liner above completes running, you should be able to access your site at `https://magento.test`.
+After the one-liner above completes running, you should be able to access your site at `https://adobe-commerce.test`.
 
 #### Install sample data and development modules
 
@@ -175,23 +112,22 @@ bin/init
 
 ### Manual Setup
 
-Same result as the one-liner above. Just replace `magento.test` references with the hostname that you wish to use.
+Same result as the one-liner above. Just replace `adobe-commerce.test` references with the hostname that you wish to use.
 
 #### New Projects
 
 ```bash
 # Create your project directory then go into it:
-mkdir -p ~/Sites/magento
+mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template | bash
 
-# Download the version of Magento (or Mage-OS) you want to use with:
-bin/download mageos 3.0.0
-# You can also specify the edition (mageos, community, enterprise) and version (3.0.0, 2.4.9, etc.)
+# Download the version of Adobe Commerce you want to use with:
+bin/download enterprise 2.4.8-p3
+# You can also specify the edition (enterprise, community, mageos) and version (2.4.8-p3, 2.4.9, etc.)
 # bin/download community 2.4.9
-# If no arguments are passed in, the edition defaults to "mageos"
 # If no version is specified, it defaults to the most recent version defined in `bin/download`
 
 # or for Magento core development:
@@ -202,23 +138,23 @@ bin/download mageos 3.0.0
 # bin/composer install
 
 # Run the setup installer for Magento:
-bin/setup magento.test
+bin/setup adobe-commerce.test
 
 # Initialize development environment with sample data and dev-related modules:
 bin/init
 
-open https://magento.test
+open https://adobe-commerce.test
 ```
 
 #### Existing Projects
 
 ```bash
 # Create your project directory then go into it:
-mkdir -p ~/Sites/magento
+mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template | bash
 
 # Take a backup of your existing database:
 bin/mysqldump > ~/Sites/existing/magento.sql
@@ -249,13 +185,15 @@ bin/setup-domain yoursite.test
 
 bin/restart
 
-open https://magento.test
+open https://adobe-commerce.test
 ```
 
 ### Elasticsearch vs OpenSearch
+
 OpenSearch is set as the default search engine when setting up this project. Follow the instructions below if you want to use Elasticsearch instead:
-1. Comment out or remove the `opensearch` container in both the [`compose.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.yaml#L69-L84) and [`compose.healthcheck.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.healthcheck.yaml#L36-L41) files
-2. Uncomment the `elasticsearch` container in both the [`compose.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.yaml#L86-L106) and [`compose.healthcheck.yaml`](https://github.com/markshust/docker-magento/blob/master/compose/compose.healthcheck.yaml#L43-L48) files
+
+1. Comment out or remove the `opensearch` container in both the [`compose.yaml`](https://github.com/adobe-commerce/docker-adobe-commerce/blob/main/compose/compose.yaml#L69-L84) and [`compose.healthcheck.yaml`](https://github.com/adobe-commerce/docker-adobe-commerce/blob/main/compose/compose.healthcheck.yaml#L36-L41) files
+2. Uncomment the `elasticsearch` container in both the [`compose.yaml`](https://github.com/adobe-commerce/docker-adobe-commerce/blob/main/compose/compose.yaml#L86-L106) and [`compose.healthcheck.yaml`](https://github.com/adobe-commerce/docker-adobe-commerce/blob/main/compose/compose.healthcheck.yaml#L43-L48) files
 3. Update the `bin/setup-install` command to use the Elasticsearch rather than OpenSearch. Change:
 
 ```
@@ -381,16 +319,16 @@ bin/detect-versions
 - `bin/restart`: Stop and then start all containers.
 - `bin/root`: Run any CLI command as root without going into the bash prompt. Ex `bin/root apt-get install nano`
 - `bin/rootnotty`: Run any CLI command as root with no TTY. Ex `bin/rootnotty chown -R app:app /var/www/html`
-- `bin/setup`: Run the Magento setup process to install Magento from the source code, with optional domain name. Defaults to `magento.test`. Ex. `bin/setup magento.test`
+- `bin/setup`: Run the Magento setup process to install Magento from the source code, with optional domain name. Defaults to `adobe-commerce.test`. Ex. `bin/setup adobe-commerce.test`
 - `bin/setup-composer-auth`: Setup authentication credentials for Composer.
-- `bin/setup-domain`: Setup Magento domain name. Ex: `bin/setup-domain magento.test`
+- `bin/setup-domain`: Setup Magento domain name. Ex: `bin/setup-domain adobe-commerce.test`
 - `bin/setup-grunt`: Install and configure Grunt JavaScript task runner to compile .less files
 - `bin/setup-install`: Automates the installation process for a Magento instance.
 - `bin/setup-integration-tests`: Script to set up integration tests.
 - `bin/setup-nginx`: Update Magento's `nginx.conf` so cookie-triggered Xdebug routing works. Auto-run by `bin/setup`; existing projects can re-run it once to opt in.
-- `bin/setup-pwa-studio`: (BETA) Install PWA Studio (requires NodeJS and Yarn to be installed on the host machine). Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio magento.test`.
-- `bin/setup-pwa-studio-sampledata`: This script makes it easier to install Venia sample data. Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio-sampledata magento.test`.
-- `bin/setup-ssl`: Generate an SSL certificate for one or more domains. Ex. `bin/setup-ssl magento.test foo.test`
+- `bin/setup-pwa-studio`: (BETA) Install PWA Studio (requires NodeJS and Yarn to be installed on the host machine). Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio adobe-commerce.test`.
+- `bin/setup-pwa-studio-sampledata`: This script makes it easier to install Venia sample data. Pass in your base site domain, otherwise the default `master-7rqtwti-mfwmkrjfqvbjk.us-4.magentosite.cloud` will be used. Ex: `bin/setup-pwa-studio-sampledata adobe-commerce.test`.
+- `bin/setup-ssl`: Generate an SSL certificate for one or more domains. Ex. `bin/setup-ssl adobe-commerce.test foo.test`
 - `bin/setup-ssl-ca`: Generate a certificate authority and copy it to the host.
 - `bin/spx`: Disable or enable output compression to enable or disable SPX. Accepts params `disable` (default) or `enable`. Ex. `bin/spx enable`
 - `bin/start`: Start all containers, good practice to use this instead of `docker-compose up -d`, as it may contain additional helpers.
@@ -431,13 +369,15 @@ Then, create your new project directory again so you can attempt the install pro
 
 After successfully installing the Magento environment, you can access the backend by following these steps:
 
-1. Open your web browser and go to the following URL: `https://magento.test/admin/`.
+1. Open your web browser and go to the following URL: `https://adobe-commerce.test/admin/`.
 
 2. Use the following default credentials to log in:
+
 - **Username:** `john.smith`
 - **Password:** `password123`
 
 3. Upon logging in, you might be prompted to configure Two-Factor Authentication (2FA). This emails you a code to log in with (which you can check with Mailcatcher by visiting `http://{yourdomain}:1080`). By default, the email address used for this purpose is:
+
 - **Email:** `john.smith@gmail.com`
 
 If you are testing in a local development environment and wish to disable 2FA, you can do so by installing [Mark's DisableTwoFactorAuth module](https://github.com/markshust/magento2-module-disabletwofactorauth).
@@ -473,10 +413,13 @@ bin/mysqldump > magento.sql
 ```
 
 > Getting an "Access denied, you need (at least one of) the SUPER privilege(s) for this operation." message when running one of the above lines? Try running it as root with:
+>
 > ```
 > bin/clinotty mysql -hdb -uroot -pmagento magento < src/backup.sql
 > ```
+>
 > You can also remove the DEFINER lines from the MySQL backup file with:
+>
 > ```
 > sed 's/\sDEFINER=`[^`]*`@`[^`]*`//g' -i src/backup.sql
 > ```
@@ -526,52 +469,53 @@ These credentials can be used to log in to PhpMyAdmin:
 
 Install and enable the PHP Debug extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug).
 
-Otherwise, this project now automatically sets up Xdebug support with VS Code. If you wish to set this up manually, please see the [`.vscode/launch.json`](https://github.com/markshust/docker-magento/blame/master/compose/.vscode/launch.json) file.
+Otherwise, this project now automatically sets up Xdebug support with VS Code. If you wish to set this up manually, please see the [`.vscode/launch.json`](https://github.com/adobe-commerce/docker-adobe-commerce/blame/main/compose/.vscode/launch.json) file.
 
 ### Xdebug & VS Code in a WSL2 environment
 
 Install and enable the PHP Debug extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug).
 
-Otherwise, this project now automatically sets up Xdebug support with VS Code. If you wish to set this up manually, please see the [`.vscode/launch.json`](https://github.com/markshust/docker-magento/blame/master/compose/.vscode/launch.json) file.
+Otherwise, this project now automatically sets up Xdebug support with VS Code. If you wish to set this up manually, please see the [`.vscode/launch.json`](https://github.com/adobe-commerce/docker-adobe-commerce/blame/main/compose/.vscode/launch.json) file.
 
 1. In VS Code, make sure that it's running in a WSL window, rather than in the default window.
 2. Install the [`PHP Debug`](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension on VS Code.
 3. Create a new configuration file inside the project. Go to the `Run and Debug` section in VS Code, then click on `create a launch.json file`.
 4. Attention to the following configs inside the file:
-    * The port must match the `xdebug.client_port` defined in the xdebug container's config. To inspect it, run:
-    ```bash
-      bin/debug-cli cat /usr/local/etc/php/conf.d/php-xdebug.ini
-    ```
-    ```ini
-      xdebug.mode = ${XDEBUG_MODE}
-      xdebug.client_host = host.docker.internal
-      xdebug.client_port = 9003
-      xdebug.start_with_request = yes
-      xdebug.output_dir = /var/www/html/var/profile
-      xdebug.profiler_output_name = cachegrind.out.%t.%p
-    ```
-    * The pathMappings should have the same folder path as the project inside the Docker container.
-    ```json
-      {
-          "version": "0.2.0",
-          "configurations": [
-              {
-                  "name": "Listen for XDebug",
-                  "type": "php",
-                  "request": "launch",
-                  "port": 9003,
-                  "pathMappings": {
-                      "/var/www/html": "${workspaceFolder}"
-                  },
-                  "hostname": "localhost"
-              }
-          ]
-      }
-    ```
+   - The port must match the `xdebug.client_port` defined in the xdebug container's config. To inspect it, run:
+   ```bash
+     bin/debug-cli cat /usr/local/etc/php/conf.d/php-xdebug.ini
+   ```
+   ```ini
+     xdebug.mode = ${XDEBUG_MODE}
+     xdebug.client_host = host.docker.internal
+     xdebug.client_port = 9003
+     xdebug.start_with_request = yes
+     xdebug.output_dir = /var/www/html/var/profile
+     xdebug.profiler_output_name = cachegrind.out.%t.%p
+   ```
+
+   - The pathMappings should have the same folder path as the project inside the Docker container.
+   ```json
+   {
+     "version": "0.2.0",
+     "configurations": [
+       {
+         "name": "Listen for XDebug",
+         "type": "php",
+         "request": "launch",
+         "port": 9003,
+         "pathMappings": {
+           "/var/www/html": "${workspaceFolder}"
+         },
+         "hostname": "localhost"
+       }
+     ]
+   }
+   ```
 5. Run the following command in the Windows Powershell. It allows WSL through the firewall, otherwise breakpoints might not be hitten.
-    ```powershell
-    New-NetFirewallRule -DisplayName "WSL" -Direction Inbound  -InterfaceAlias "vEthernet (WSL)"  -Action Allow
-    ```
+   ```powershell
+   New-NetFirewallRule -DisplayName "WSL" -Direction Inbound  -InterfaceAlias "vEthernet (WSL)"  -Action Allow
+   ```
 
 ### Xdebug & PhpStorm
 
@@ -580,45 +524,41 @@ Xdebug runs in a dedicated `phpfpm-xdebug` container. Nginx routes requests to i
 1.  First, install the [Chrome Xdebug helper](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc). After installed, right click on the Chrome icon for it and go to Options. Under IDE Key, select PhpStorm from the list to set the IDE Key to "PHPSTORM", then click Save.
 
 2.  Open `PhpStorm > Preferences > PHP` and configure:
+    - `CLI Interpreter`
+      - Create a new interpreter from the `From Docker, Vagrant, VM...` list.
+      - Select the Docker Compose option.
+      - For Server, select `Docker`. If you don't have Docker set up as a server, create one and name it `Docker`.
+      - For Configuration files, add both the `compose.yaml` and `compose.dev.yaml` files from your project directory.
+      - For Service, select `phpfpm`, then click OK.
+      - Name this CLI Interpreter `phpfpm`, then click OK again.
 
-    * `CLI Interpreter`
-        * Create a new interpreter from the `From Docker, Vagrant, VM...` list.
-        * Select the Docker Compose option.
-        * For Server, select `Docker`. If you don't have Docker set up as a server, create one and name it `Docker`.
-        * For Configuration files, add both the `compose.yaml` and `compose.dev.yaml` files from your project directory.
-        * For Service, select `phpfpm`, then click OK.
-        * Name this CLI Interpreter `phpfpm`, then click OK again.
+    - `Path mappings`
+      - There is no need to define a path mapping in this area.
 
-    * `Path mappings`
-        * There is no need to define a path mapping in this area.
+3.  Open `PhpStorm > Preferences > PHP > Debug` and ensure Debug Port is set to `9000,9003`.
 
-3. Open `PhpStorm > Preferences > PHP > Debug` and ensure Debug Port is set to `9000,9003`.
+4.  Open `PhpStorm > Preferences > PHP > Servers` and create a new server:
+    - For the Name, set this to **`magento`** — this must match the `PHP_IDE_CONFIG` `serverName` value in `compose/env/phpfpm-xdebug.env` so Xdebug auto-matches this server entry.
+    - For the Host, set this to the value of your domain name (ex. `adobe-commerce.test`).
+    - Keep port set to `80`.
+    - Check the "Use path mappings" box and map `src` to the absolute path of `/var/www/html`.
 
-4. Open `PhpStorm > Preferences > PHP > Servers` and create a new server:
+5.  Go to `Run > Edit Configurations` and create a new `PHP Remote Debug` configuration.
+    - Set the Name to whatever you like (ex. `adobe-commerce.test`).
+    - Check the `Filter debug connection by IDE key` checkbox, select the Server you just setup.
+    - For IDE key, enter `PHPSTORM`. This value should match the IDE Key value set by the Chrome Xdebug Helper.
+    - Click OK to finish setting up the remote debugger in PHPStorm.
 
-    * For the Name, set this to **`magento`** — this must match the `PHP_IDE_CONFIG` `serverName` value in `compose/env/phpfpm-xdebug.env` so Xdebug auto-matches this server entry.
-    * For the Host, set this to the value of your domain name (ex. `magento.test`).
-    * Keep port set to `80`.
-    * Check the "Use path mappings" box and map `src` to the absolute path of `/var/www/html`.
-
-5. Go to `Run > Edit Configurations` and create a new `PHP Remote Debug` configuration.
-
-    * Set the Name to whatever you like (ex. `magento.test`).
-    * Check the `Filter debug connection by IDE key` checkbox, select the Server you just setup.
-    * For IDE key, enter `PHPSTORM`. This value should match the IDE Key value set by the Chrome Xdebug Helper.
-    * Click OK to finish setting up the remote debugger in PHPStorm.
-
-6. Open up `pub/index.php` and set a breakpoint near the end of the file.
-
-    * Start the debugger with `Run > Debug 'magento.test'`, then open up a web browser.
-    * Ensure the Chrome Xdebug helper is enabled by clicking on it and selecting Debug. The icon should turn bright green.
-    * Navigate to your Magento store URL, and Xdebug should now trigger the debugger within PhpStorm at the toggled breakpoint.
+6.  Open up `pub/index.php` and set a breakpoint near the end of the file.
+    - Start the debugger with `Run > Debug 'adobe-commerce.test'`, then open up a web browser.
+    - Ensure the Chrome Xdebug helper is enabled by clicking on it and selecting Debug. The icon should turn bright green.
+    - Navigate to your Magento store URL, and Xdebug should now trigger the debugger within PhpStorm at the toggled breakpoint.
 
 ### SSH
 
 Since version `40.0.0`, this project supports connecting to Docker with SSH/SFTP. This means that if you solely use either PhpStorm or VSCode, you no longer need to selectively mount host volumes in order to gain bi-directional sync capabilities from host to container. This will enable full speed in the native filesystem, as all files will be stored directly in the `appdata` container volume, rather than being synced from the host. This is especially useful if you'd like to sync larger directories such as `generated`, `pub` & `vendor`.
 
-Copy `compose.dev-ssh.yaml` to `compose.dev.yaml` before installing Magento to take advantage of this setup. Then, create an SFTP connection at  Preferences -> Build, Execution, Deployment -> Deployment. Connect to `localhost` and use `app` for the username & password. You can set additional options for working with Magento in PhpStorm at Preferences -> Build, Execution, Deployment -> Deployment -> Options.
+Copy `compose.dev-ssh.yaml` to `compose.dev.yaml` before installing Magento to take advantage of this setup. Then, create an SFTP connection at Preferences -> Build, Execution, Deployment -> Deployment. Connect to `localhost` and use `app` for the username & password. You can set additional options for working with Magento in PhpStorm at Preferences -> Build, Execution, Deployment -> Deployment -> Options.
 
 Note that you must use your IDE's SSH/SFTP functionality, otherwise changes will not be synced. To re-sync your host environment at any time, run:
 
@@ -745,17 +685,17 @@ To enable it:
 1. Uncomment the `blackfire` service in `compose.yaml`.
 2. Add your server credentials to `env/blackfire.env`:
 
-    ```
-    BLACKFIRE_SERVER_ID={YOUR_SERVER_ID}
-    BLACKFIRE_SERVER_TOKEN={YOUR_SERVER_TOKEN}
-    ```
+   ```
+   BLACKFIRE_SERVER_ID={YOUR_SERVER_ID}
+   BLACKFIRE_SERVER_TOKEN={YOUR_SERVER_TOKEN}
+   ```
 
 3. Add your client credentials to `env/phpfpm.env`:
 
-    ```
-    BLACKFIRE_CLIENT_ID={YOUR_CLIENT_ID}
-    BLACKFIRE_CLIENT_TOKEN={YOUR_CLIENT_TOKEN}
-    ```
+   ```
+   BLACKFIRE_CLIENT_ID={YOUR_CLIENT_ID}
+   BLACKFIRE_CLIENT_TOKEN={YOUR_CLIENT_TOKEN}
+   ```
 
 4. Restart the containers with `bin/restart`.
 
@@ -831,7 +771,7 @@ While we're at it, let's also create an initial LESS file so we have something t
 
 ```css
 body {
-    background: white;
+  background: white;
 }
 ```
 
@@ -861,7 +801,7 @@ Since this is all set, let's update the CSS file to a different background color
 
 ```css
 body {
-    background: blue;
+  background: blue;
 }
 ```
 
@@ -871,7 +811,7 @@ Upon saving this file, we will see the Grunt watcher detect the changes, and you
 
 The images also have additional profiler-tracers built-in to the <a href="https://github.com/NoiseByNorthwest/php-spx/tree/master#web-ui" target="_blank">Web UI.</a>
 
-To access the control panel, just open the following URL: `https://magento.test/?SPX_UI_URI=/`
+To access the control panel, just open the following URL: `https://adobe-commerce.test/?SPX_UI_URI=/`
 
 **Suggested Configuration**
 
@@ -888,14 +828,14 @@ Profiling is also possible via command line, or curl:
 
 ```
 SPX_REPORT=full SPX_ENABLED=1 SPX_SAMPLING_PERIOD=5000 bin/magento {command_name}
-curl --cookie "SPX_REPORT=full; SPX_ENABLED=1; SPX_SAMPLING_PERIOD=5000" https://magento.test/
+curl --cookie "SPX_REPORT=full; SPX_ENABLED=1; SPX_SAMPLING_PERIOD=5000" https://adobe-commerce.test/
 ```
 
 Additional information of how to work with SPX is available at https://www.youtube.com/watch?v=xk-JiBLsKfA
 
 ## Known Issues
 
-There are currently no large known issues or workarounds needed to use docker-magento with your Magento project. If you find any, please [report them](https://github.com/markshust/docker-magento/issues)!
+There are currently no large known issues or workarounds needed to use docker-magento with your Magento project. If you find any, please [report them](https://github.com/adobe-commerce/docker-adobe-commerce/issues)!
 
 ## Alternatives
 
@@ -909,22 +849,11 @@ If `docker-magento` helps you build Magento locally, [Mappia](https://www.mappia
 
 ## Credits
 
-### M.academy
-
-This course is sponsored by <a href="https://m.academy" target="_blank">M.academy</a>, the simplest way to learn Magento.
-
-<a href="https://m.academy" target="_blank"><img src="docs/macademy-logo.png" alt="M.academy"></a>
+Fork of **[markshust/docker-magento](https://github.com/markshust/docker-magento)**. Tutorials and the full lesson list remain in the **[upstream README → Free Course](https://github.com/markshust/docker-magento#free-course)**.
 
 ### Mark Shust
 
-My name is Mark Shust and I'm the creator of this repo. I'm a <a href="https://www.credly.com/users/mark-shust/badges" target="_blank">6X Adobe Commerce Certified Developer</a> and have been involved with Magento since the early days (v0.8!). I create technical education courses full-time for my company, <a href="https://m.academy" target="_blank">M.academy</a>.
-
-- <a href="https://m.academy/courses" target="_blank">🖥️ See my Magento lessons & courses</a>
-- <a href="https://m.academy/articles" target="_blank">📖 Read my technical articles</a>
-- <a href="https://youtube.com/markshust" target="_blank">🎥 Watch my YouTube videos</a>
-- <a href="https://www.linkedin.com/in/MarkShust/" target="_blank">🔗 Connect on LinkedIn</a>
-- <a href="https://twitter.com/MarkShust" target="_blank">🐦 Follow me on X</a>
-- <a href="mailto:mark@m.academy">💌 Contact me</a>
+Author of docker-magento and **[M.academy](https://m.academy)**. [Magento courses](https://m.academy/courses), [articles](https://m.academy/articles), [YouTube](https://youtube.com/markshust), [LinkedIn](https://www.linkedin.com/in/MarkShust/), [X](https://twitter.com/MarkShust), [email](mailto:mark@m.academy).
 
 ## License
 
