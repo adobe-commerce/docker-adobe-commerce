@@ -12,8 +12,6 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-echo -e "${BLUE}>>> Installing Adobe Commerce ${EDITION} ${VERSION}...${NC}"
-
 echo -e "${BLUE}>>> Tearing down existing environment...${NC}"
 bin/removeall || true
 rm -rf src
@@ -34,11 +32,36 @@ git clone git@github.com:magento-commerce/magento-product-recommendations-admin.
 git clone git@github.com:magento-commerce/magento-catalog-sync-admin.git extensions/catalog-sync-admin
 git clone git@github.com:magento-commerce/magento-live-search.git extensions/magento-live-search
 
-echo -e "${BLUE}>>> Downloading Adobe Commerce (${EDITION} edition, ${VERSION})...${NC}"
-bin/download "${EDITION}" "${VERSION}"
+echo -e "${BLUE}>>> Pinning service images for ${EDITION} ${VERSION}...${NC}"
+bin/detect-versions "${EDITION}" "${VERSION}" || true
 
-echo -e "${BLUE}>>> Running Magento setup...${NC}"
-bin/setup "${DOMAIN}"
+echo -e "${BLUE}>>> Starting containers...${NC}"
+bin/stop
+bin/start --no-dev
+[ $? != 0 ] && echo "Failed to start Docker services" && exit
+
+bin/setup-composer-auth
+bin/fixowns
+
+echo -e "${BLUE}>>> Downloading Adobe Commerce ${EDITION} ${VERSION}...${NC}"
+bin/clinotty composer create-project --repository=https://repo.magento.com/ magento/project-"${EDITION}"-edition="${VERSION}" .
+
+bin/clinotty chmod u+x bin/magento
+rm -rf src && mkdir src
+
+echo "Adding Magento modules to Composer allow-plugins directive..."
+bin/clinotty composer config --no-plugins allow-plugins.magento/magento-composer-installer true
+bin/clinotty composer config --no-plugins allow-plugins.magento/inventory-composer-installer true
+bin/clinotty composer config --no-plugins allow-plugins.laminas/laminas-dependency-plugin true
+
+echo -e "${BLUE}>>> Running Magento setup:install...${NC}"
+bin/setup-install "${DOMAIN}"
+
+echo "Copying files from container to host after install..."
+bin/copyfromcontainer --all
+
+echo "Updating nginx.conf for Xdebug cookie routing..."
+bin/setup-nginx
 
 echo -e "${BLUE}>>> Disabling Two-Factor Authentication for development...${NC}"
 bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
@@ -54,6 +77,31 @@ bin/restart
 bin/magento module:enable --all
 bin/magento setup:upgrade
 bin/magento setup:di:compile
-bin/magento cache:flush
 
-echo -e "${GREEN}>>> Adobe Commerce ${EDITION} ${VERSION} installed successfully.${NC}"
+echo "Forcing deploy of static content to speed up initial requests..."
+bin/clinotty bin/magento setup:static-content:deploy -f
+
+echo "Re-indexing with Elasticsearch..."
+bin/clinotty bin/magento indexer:reindex
+
+echo "Setting basic URL and generating SSL certificate..."
+bin/setup-domain "${DOMAIN}"
+
+echo "Fixing owner and permissions..."
+bin/fixowns
+bin/fixperms
+
+echo "Clearing the cache to apply updates..."
+bin/clinotty bin/magento cache:flush
+
+echo "Installing cron, run 'bin/cron start' to enable..."
+bin/clinotty bin/magento cron:install
+
+echo "Turning on developer mode..."
+bin/clinotty bin/magento deploy:mode:set developer
+
+cp -r .vscode src/
+
+echo -e "${GREEN}>>> Adobe Commerce ${EDITION} ${VERSION} setup complete.${NC}"
+echo "You may now access your Adobe Commerce instance at https://${DOMAIN}/"
+echo "You may now access your Adobe Commerce backend at https://${DOMAIN}/admin/"
