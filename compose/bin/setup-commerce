@@ -79,19 +79,19 @@ echo -e "${BLUE}>>> Restarting with extensions mounted...${NC}"
 bin/start --no-dev
 
 echo -e "${BLUE}>>> Disabling Two-Factor Authentication for development...${NC}"
-bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
-bin/magento setup:upgrade
-bin/magento cache:flush
+bin/clinotty bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+bin/clinotty bin/magento setup:upgrade
+bin/clinotty bin/magento cache:flush
 
 echo -e "${BLUE}>>> Installing Composer dependencies for extensions...${NC}"
-bin/composer require firebase/php-jwt
-bin/composer require gmostafa/php-graphql-client
+bin/clinotty composer require firebase/php-jwt
+bin/clinotty composer require gmostafa/php-graphql-client
 
 echo -e "${BLUE}>>> Enabling all modules and compiling...${NC}"
 bin/restart
-bin/magento module:enable --all
-bin/magento setup:upgrade
-bin/magento setup:di:compile
+bin/clinotty bin/magento module:enable --all
+bin/clinotty bin/magento setup:upgrade
+bin/clinotty bin/magento setup:di:compile
 
 echo "Forcing deploy of static content to speed up initial requests..."
 bin/clinotty bin/magento setup:static-content:deploy -f
