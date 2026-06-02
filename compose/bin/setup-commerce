@@ -4,9 +4,9 @@ set -o errexit
 # shellcheck source=../env/commerce.env
 [ -f "env/commerce.env" ] && source "env/commerce.env"
 
-EDITION=${COMMERCE_MAGENTO_EDITION:-enterprise}
-VERSION=${COMMERCE_MAGENTO_VERSION:-2.4.8-p3}
 DOMAIN="${1:-adobe-commerce.test}"
+EDITION="${2:-${COMMERCE_MAGENTO_EDITION:-enterprise}}"
+VERSION="${3:-${COMMERCE_MAGENTO_VERSION:-2.4.8-p3}}"
 
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
