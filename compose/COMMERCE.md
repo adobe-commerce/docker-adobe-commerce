@@ -4,7 +4,7 @@
 
 - Docker Desktop
 - Composer keys with access to Adobe Commerce (EE) on `repo.magento.com`
-- GitHub SSH access to the [magento-commerce](https://github.com/magento-commerce) organization
+- **GitHub SSH access** to the [magento-commerce](https://github.com/magento-commerce) organization — required to clone the Data Solutions extension repos during setup
 
 ## Setup
 
@@ -21,10 +21,19 @@ bind-mounts them into the container. `bin/setup-commerce` does this automaticall
 bin/setup-commerce
 ```
 
-Custom domain (defaults to `adobe-commerce.test`):
+Custom domain, edition, or version (all optional — defaults come from `env/commerce.env`):
 
 ```bash
-bin/setup-commerce my-store.test
+bin/setup-commerce my-store.test enterprise 2.4.8-p3
+```
+
+## Sample Data and Dev Modules
+
+After setup completes, run `bin/init-commerce` to install Magento sample data, enable a long
+admin session lifetime, and disable password expiration for local development:
+
+```bash
+bin/init-commerce
 ```
 
 ## Volume Mount Configuration

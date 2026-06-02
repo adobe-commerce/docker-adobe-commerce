@@ -81,7 +81,7 @@ bin/magento setup:di:compile
 echo "Forcing deploy of static content to speed up initial requests..."
 bin/clinotty bin/magento setup:static-content:deploy -f
 
-echo "Re-indexing with Elasticsearch..."
+echo "Re-indexing with OpenSearch..."
 bin/clinotty bin/magento indexer:reindex
 
 echo "Setting basic URL and generating SSL certificate..."
