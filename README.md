@@ -97,7 +97,7 @@ mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Run this automated one-liner from the directory you want to install your project.
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/onelinesetup-commerce | bash -s -- adobe-commerce.test enterprise 2.4.8-p3
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/onelinesetup-commerce | bash -s -- adobe-commerce.test enterprise 2.4.8-p3
 ```
 
 The `adobe-commerce.test` above defines the hostname to use, `enterprise` is the edition, and `2.4.8-p3` is the version. Edition and version are optional — if omitted they default to the values in `env/commerce.env`. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
@@ -120,7 +120,7 @@ mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Download the Adobe Commerce Docker Compose template:
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template-commerce | bash
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template-commerce | bash
 
 # Optionally edit env/commerce.env to change edition or version before setup.
 
@@ -143,7 +143,7 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Run this automated one-liner from the directory you want to install your project.
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/onelinesetup | bash -s -- magento.test mageos 3.0.0
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/onelinesetup | bash -s -- magento.test mageos 3.0.0
 ```
 
 #### Manual Setup
@@ -154,7 +154,7 @@ mkdir -p ~/Sites/magento
 cd $_
 
 # Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template | bash
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template | bash
 
 # Download the version of Magento Open Source or Mage-OS you want to use:
 bin/download mageos 3.0.0
@@ -177,7 +177,7 @@ mkdir -p ~/Sites/my-project
 cd $_
 
 # Download the appropriate template (template-commerce for EE, template for Open Source):
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template-commerce | bash
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template-commerce | bash
 
 # Take a backup of your existing database:
 bin/mysqldump > ~/Sites/existing/magento.sql

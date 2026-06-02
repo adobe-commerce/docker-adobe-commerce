@@ -15,7 +15,7 @@ fi
 git init -qqq
 git remote add origin https://github.com/adobe-commerce/docker-adobe-commerce
 git fetch origin -qqq
-git checkout origin/develop -- compose
+git checkout origin/main -- compose
 
 mv compose/* ./
 mv compose/.gitignore ./
