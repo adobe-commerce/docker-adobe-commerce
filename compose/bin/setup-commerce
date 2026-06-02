@@ -52,6 +52,9 @@ bin/copyfromcontainer --all
 echo "Updating nginx.conf for Xdebug cookie routing..."
 bin/setup-nginx
 
+echo -e "${BLUE}>>> Fixing extension directory ownership before stop...${NC}"
+bin/rootnotty chown -R app:app /var/www/html/app/code 2>/dev/null || true
+
 echo -e "${BLUE}>>> Stopping containers to mount Data Solutions extensions...${NC}"
 bin/stop
 
