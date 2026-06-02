@@ -119,4 +119,4 @@ cp -r .vscode src/
 
 echo -e "${GREEN}>>> Adobe Commerce ${EDITION} ${VERSION} setup complete.${NC}"
 echo "You may now access your Adobe Commerce instance at https://${DOMAIN}/"
-echo "You may now access your Adobe Commerce backend at https://${DOMAIN}/admin/"
+echo "You may now access your Adobe Commerce admin instance at https://${DOMAIN}/admin/"
