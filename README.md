@@ -87,7 +87,9 @@ This configuration has been tested on Mac & Linux. Windows is supported through 
 
 ## Setup
 
-### Automated Setup (New Project)
+### Adobe Commerce (Enterprise Edition)
+
+#### Automated Setup
 
 ```bash
 # Create your project directory then go into it:
@@ -95,10 +97,10 @@ mkdir -p ~/Sites/adobe-commerce
 cd $_
 
 # Run this automated one-liner from the directory you want to install your project.
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/onelinesetup | bash -s -- adobe-commerce.test enterprise 2.4.8-p3
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/onelinesetup-commerce | bash -s -- adobe-commerce.test
 ```
 
-The `adobe-commerce.test` above defines the hostname to use, `enterprise` is the edition, and `2.4.8-p3` defines the version to install. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
+The `adobe-commerce.test` above defines the hostname to use. Edition and version default to `enterprise 2.4.8-p3` and can be changed in `env/commerce.env` before running setup. Note that since we need a write to `/etc/hosts` for DNS resolution, you will be prompted for your system password during setup.
 
 After the one-liner above completes running, you should be able to access your site at `https://adobe-commerce.test`.
 
@@ -107,54 +109,75 @@ After the one-liner above completes running, you should be able to access your s
 After the above installation is complete, you can initialize the development environment with sample data and dev-related modules with:
 
 ```bash
-bin/init
+bin/init-commerce
 ```
 
-### Manual Setup
-
-Same result as the one-liner above. Just replace `adobe-commerce.test` references with the hostname that you wish to use.
-
-#### New Projects
+#### Manual Setup
 
 ```bash
 # Create your project directory then go into it:
 mkdir -p ~/Sites/adobe-commerce
 cd $_
 
-# Download the Docker Compose template:
-curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template | bash
+# Download the Adobe Commerce Docker Compose template:
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template-commerce | bash
 
-# Download the version of Adobe Commerce you want to use with:
-bin/download enterprise 2.4.8-p3
-# You can also specify the edition (enterprise, community, mageos) and version (2.4.8-p3, 2.4.9, etc.)
-# bin/download community 2.4.9
-# If no version is specified, it defaults to the most recent version defined in `bin/download`
+# Optionally edit env/commerce.env to change edition or version before setup.
 
-# or for Magento core development:
-# bin/start --no-dev
-# bin/setup-composer-auth
-# bin/cli git clone git@github.com:magento/magento2.git .
-# bin/cli git checkout 2.4-develop
-# bin/composer install
-
-# Run the setup installer for Magento:
-bin/setup adobe-commerce.test
+# Run the full setup (clones Data Solutions extensions, downloads EE, installs Magento):
+bin/setup-commerce adobe-commerce.test
 
 # Initialize development environment with sample data and dev-related modules:
-bin/init
+bin/init-commerce
 
 open https://adobe-commerce.test
 ```
 
-#### Existing Projects
+### Magento Open Source / Mage-OS
+
+#### Automated Setup
 
 ```bash
 # Create your project directory then go into it:
-mkdir -p ~/Sites/adobe-commerce
+mkdir -p ~/Sites/magento
+cd $_
+
+# Run this automated one-liner from the directory you want to install your project.
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/onelinesetup | bash -s -- magento.test mageos 3.0.0
+```
+
+#### Manual Setup
+
+```bash
+# Create your project directory then go into it:
+mkdir -p ~/Sites/magento
 cd $_
 
 # Download the Docker Compose template:
 curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template | bash
+
+# Download the version of Magento Open Source or Mage-OS you want to use:
+bin/download mageos 3.0.0
+# bin/download community 2.4.9
+
+# Run the setup installer:
+bin/setup magento.test
+
+# Initialize development environment with sample data and dev-related modules:
+bin/init
+
+open https://magento.test
+```
+
+### Existing Projects
+
+```bash
+# Create your project directory then go into it:
+mkdir -p ~/Sites/my-project
+cd $_
+
+# Download the appropriate template (template-commerce for EE, template for Open Source):
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template-commerce | bash
 
 # Take a backup of your existing database:
 bin/mysqldump > ~/Sites/existing/magento.sql
@@ -185,7 +208,7 @@ bin/setup-domain yoursite.test
 
 bin/restart
 
-open https://adobe-commerce.test
+open https://yoursite.test
 ```
 
 ### Elasticsearch vs OpenSearch
@@ -482,9 +505,11 @@ Otherwise, this project now automatically sets up Xdebug support with VS Code. I
 3. Create a new configuration file inside the project. Go to the `Run and Debug` section in VS Code, then click on `create a launch.json file`.
 4. Attention to the following configs inside the file:
    - The port must match the `xdebug.client_port` defined in the xdebug container's config. To inspect it, run:
+
    ```bash
      bin/debug-cli cat /usr/local/etc/php/conf.d/php-xdebug.ini
    ```
+
    ```ini
      xdebug.mode = ${XDEBUG_MODE}
      xdebug.client_host = host.docker.internal
@@ -495,6 +520,7 @@ Otherwise, this project now automatically sets up Xdebug support with VS Code. I
    ```
 
    - The pathMappings should have the same folder path as the project inside the Docker container.
+
    ```json
    {
      "version": "0.2.0",
@@ -512,6 +538,7 @@ Otherwise, this project now automatically sets up Xdebug support with VS Code. I
      ]
    }
    ```
+
 5. Run the following command in the Windows Powershell. It allows WSL through the firewall, otherwise breakpoints might not be hitten.
    ```powershell
    New-NetFirewallRule -DisplayName "WSL" -Direction Inbound  -InterfaceAlias "vEthernet (WSL)"  -Action Allow

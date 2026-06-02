@@ -2,8 +2,6 @@
 set -o errexit
 
 DOMAIN=${1:-adobe-commerce.test}
-EDITION=${2}
-VERSION=${3}
 
 curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/develop/lib/template-commerce | bash
 
