@@ -69,3 +69,5 @@ services:
 
   phpfpm:
     volumes: *commercevolumes
+    env_file:
+      - env/commerce.env

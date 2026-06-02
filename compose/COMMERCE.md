@@ -36,6 +36,23 @@ admin session lifetime, and disable password expiration for local development:
 bin/init-commerce
 ```
 
+## Overriding Magento Environment Variables
+
+You can override any Magento environment variable by adding entries to `env/commerce.env` using this pattern:
+
+```
+CONFIG__DEFAULT__<namespace>__<key>=<value>
+```
+
+Be careful as these variables are always applied. They override whatever Magento has stored in the database or config files.
+
+**Example** — set the SaaS environment to sandbox:
+
+```bash
+# example
+CONFIG__DEFAULT__MAGENTO_SAAS__ENVIRONMENT=sandbox
+```
+
 ## Volume Mount Configuration
 
 Extension volume mounts are defined in `compose.commerce.yaml` and loaded automatically by
