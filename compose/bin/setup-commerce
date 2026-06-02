@@ -5,8 +5,8 @@ set -o errexit
 [ -f "env/commerce.env" ] && source "env/commerce.env"
 
 DOMAIN="${1:-adobe-commerce.test}"
-EDITION="${2:-${COMMERCE_MAGENTO_EDITION:-enterprise}}"
-VERSION="${3:-${COMMERCE_MAGENTO_VERSION:-2.4.8-p3}}"
+EDITION="${2:-${ADOBE_COMMERCE_EDITION:-enterprise}}"
+VERSION="${3:-${ADOBE_COMMERCE_VERSION:-2.4.8-p3}}"
 
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
