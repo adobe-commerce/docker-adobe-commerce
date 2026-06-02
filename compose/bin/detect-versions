@@ -77,7 +77,8 @@ warn() {
 normalize_edition() {
   local raw="$1"
   case "$raw" in
-    magento|community|enterprise|magento/*) printf 'magento\n' ;;
+    magento|community|magento/project-community-edition) printf 'magento\n' ;;
+    enterprise|magento/project-enterprise-edition)       printf 'enterprise\n' ;;
     mage-os|mageos|mage-os/*)              printf 'mage-os\n' ;;
     *)                                     printf '%s\n' "$raw" ;;
   esac

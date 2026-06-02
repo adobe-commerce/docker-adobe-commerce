@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
+set -o errexit
+
+# Copy Adobe Commerce-oriented compose tooling from this repo into the current (empty) directory.
+# Use before bin/setup-commerce (see compose/COMMERCE.md).
+#
+#   mkdir -p ~/Sites/myproject && cd $_
+#   bash /path/to/docker-adobe-commerce/lib/template-commerce
 
 if [ -d "./bin" ]; then
-  echo "Error: The current directory is not empty. Please remove all contents within this directory and try again."
+  echo "Error: The current directory is not empty (found ./bin). Remove contents or use an empty directory."
   exit 1
 fi
 

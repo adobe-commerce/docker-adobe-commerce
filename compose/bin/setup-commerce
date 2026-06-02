@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+set -o errexit
+
+# shellcheck source=../env/commerce.env
+[ -f "env/commerce.env" ] && source "env/commerce.env"
+
+DOMAIN="${1:-adobe-commerce.test}"
+EDITION="${2:-${ADOBE_COMMERCE_EDITION:-enterprise}}"
+VERSION="${3:-${ADOBE_COMMERCE_VERSION:-2.4.8-p3}}"
+
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+echo -e "${BLUE}>>> Tearing down existing environment...${NC}"
+bin/removeall || true
+rm -rf src extensions
+
+echo -e "${BLUE}>>> Pinning service images for ${EDITION} ${VERSION}...${NC}"
+bin/detect-versions "${EDITION}" "${VERSION}" || true
+
+# Temporarily set compose.commerce.yaml aside so Docker doesn't pre-create extension
+# bind-mount directories inside the container — composer create-project requires
+# /var/www/html/ to be empty.
+mv compose.commerce.yaml compose.commerce.yaml.bak
+
+echo -e "${BLUE}>>> Starting containers for download...${NC}"
+bin/stop
+bin/start --no-dev
+[ $? != 0 ] && mv compose.commerce.yaml.bak compose.commerce.yaml && echo "Failed to start Docker services" && exit
+
+bin/setup-composer-auth
+bin/fixowns
+
+echo -e "${BLUE}>>> Downloading Adobe Commerce ${EDITION} ${VERSION}...${NC}"
+bin/clinotty composer create-project --repository=https://repo.magento.com/ magento/project-"${EDITION}"-edition="${VERSION}" .
+
+bin/clinotty chmod u+x bin/magento
+rm -rf src && mkdir src
+
+echo "Adding Magento modules to Composer allow-plugins directive..."
+bin/clinotty composer config --no-plugins allow-plugins.magento/magento-composer-installer true
+bin/clinotty composer config --no-plugins allow-plugins.magento/inventory-composer-installer true
+bin/clinotty composer config --no-plugins allow-plugins.laminas/laminas-dependency-plugin true
+
+echo -e "${BLUE}>>> Running Magento setup:install...${NC}"
+bin/setup-install "${DOMAIN}"
+
+echo "Copying files from container to host after install..."
+bin/copyfromcontainer --all
+
+echo "Updating nginx.conf for Xdebug cookie routing..."
+bin/setup-nginx
+
+echo -e "${BLUE}>>> Fixing extension directory ownership before stop...${NC}"
+bin/rootnotty chown -R app:app /var/www/html/app/code 2>/dev/null || true
+
+echo -e "${BLUE}>>> Stopping containers to mount Data Solutions extensions...${NC}"
+bin/stop
+
+# Restore commerce overlay and clone extension repos
+mv compose.commerce.yaml.bak compose.commerce.yaml
+
+echo -e "${BLUE}>>> Cloning Data Solutions extension repos...${NC}"
+mkdir -p extensions
+git clone git@github.com:magento-commerce/services-connector.git extensions/services-connector
+git clone git@github.com:magento-commerce/services-id.git extensions/services-id
+git clone git@github.com:magento-commerce/data-services.git extensions/data-services
+git clone git@github.com:magento-commerce/data-solutions-magento-bff.git extensions/data-solutions-magento-bff
+git clone git@github.com:magento-commerce/saas-export.git extensions/saas-export
+git clone git@github.com:magento-commerce/commerce-data-export.git extensions/commerce-data-export
+git clone git@github.com:magento-commerce/commerce-data-export-ee.git extensions/commerce-data-export-ee
+git clone git@github.com:magento-commerce/magento-product-recommendations.git extensions/product-recommendations
+git clone git@github.com:magento-commerce/magento-product-recommendations-admin.git extensions/product-recommendations-admin
+git clone git@github.com:magento-commerce/magento-catalog-sync-admin.git extensions/catalog-sync-admin
+git clone git@github.com:magento-commerce/magento-live-search.git extensions/magento-live-search
+
+echo -e "${BLUE}>>> Restarting with extensions mounted...${NC}"
+bin/start --no-dev
+
+echo -e "${BLUE}>>> Disabling Two-Factor Authentication for development...${NC}"
+bin/clinotty bin/magento module:disable Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
+bin/clinotty bin/magento setup:upgrade
+bin/clinotty bin/magento cache:flush
+
+echo -e "${BLUE}>>> Installing Composer dependencies for extensions...${NC}"
+bin/clinotty composer require firebase/php-jwt
+bin/clinotty composer require gmostafa/php-graphql-client
+
+echo -e "${BLUE}>>> Enabling all modules and compiling...${NC}"
+bin/restart
+bin/clinotty bin/magento module:enable --all
+bin/clinotty bin/magento setup:upgrade
+bin/clinotty bin/magento setup:di:compile
+
+echo "Forcing deploy of static content to speed up initial requests..."
+bin/clinotty bin/magento setup:static-content:deploy -f
+
+echo "Re-indexing with OpenSearch..."
+bin/clinotty bin/magento indexer:reindex
+
+echo "Setting basic URL and generating SSL certificate..."
+bin/setup-domain "${DOMAIN}"
+
+echo "Fixing owner and permissions..."
+bin/fixowns
+bin/fixperms
+
+echo "Clearing the cache to apply updates..."
+bin/clinotty bin/magento cache:flush
+
+echo "Installing cron, run 'bin/cron start' to enable..."
+bin/clinotty bin/magento cron:install
+
+echo "Turning on developer mode..."
+bin/clinotty bin/magento deploy:mode:set developer
+
+cp -r .vscode src/
+
+echo -e "${GREEN}>>> Adobe Commerce ${EDITION} ${VERSION} setup complete.${NC}"
+echo "You may now access your Adobe Commerce instance at https://${DOMAIN}/"
+echo "You may now access your Adobe Commerce admin instance at https://${DOMAIN}/admin/"

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -o errexit
+
+DOMAIN=${1:-adobe-commerce.test}
+EDITION=${2}
+VERSION=${3}
+
+curl -s https://raw.githubusercontent.com/adobe-commerce/docker-adobe-commerce/main/lib/template-commerce | bash
+
+# Pass edition/version only when explicitly provided — otherwise setup-commerce uses env/commerce.env defaults
+bin/setup-commerce "${DOMAIN}" ${EDITION:+"$EDITION"} ${VERSION:+"$VERSION"}
