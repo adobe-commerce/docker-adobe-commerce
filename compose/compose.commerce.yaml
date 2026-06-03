@@ -59,6 +59,7 @@ services:
 
       # Catalog Sync Admin
       - ./extensions/catalog-sync-admin/CatalogSyncAdmin:/var/www/html/app/code/Magento/CatalogSyncAdmin:consistent
+      - ./extensions/catalog-sync-admin/CatalogSyncAdminGraphQlServer:/var/www/html/app/code/Magento/CatalogSyncAdminGraphQlServer:consistent
 
       # Live Search
       - ./extensions/magento-live-search/LiveSearch:/var/www/html/app/code/Magento/LiveSearch:consistent
