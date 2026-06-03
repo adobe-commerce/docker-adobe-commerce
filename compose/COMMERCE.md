@@ -36,6 +36,14 @@ admin session lifetime, and disable password expiration for local development:
 bin/init-commerce
 ```
 
+After `bin/init-commerce`, run a full reindex so sample products appear on the storefront. Magento
+writes new products to the database but the storefront queries index tables, which are stale until
+rebuilt. Without this step the catalog, search, and SaaS export feeds are all empty.
+
+```bash
+bin/magento indexer:reindex
+```
+
 ## Overriding Magento Environment Variables
 
 You can override any Magento environment variable by adding entries to `env/commerce.env` using this pattern:
@@ -83,3 +91,14 @@ To work on a module that's already in vendor:
 
 The volume mount overrides the vendor version at the container level. When done,
 comment it back out and restart to return to the vendor version.
+
+## Troubleshooting
+
+When in doubt, these commands are helpful:
+
+```bash
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento cache:flush
+bin/restart
+```
