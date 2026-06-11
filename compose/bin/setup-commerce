@@ -85,7 +85,7 @@ bin/clinotty bin/magento cache:flush
 
 echo -e "${BLUE}>>> Installing Composer dependencies for extensions...${NC}"
 bin/clinotty composer require firebase/php-jwt
-bin/clinotty composer require gmostafa/php-graphql-client
+bin/clinotty composer require carnage/php-graphql-client
 
 echo -e "${BLUE}>>> Enabling all modules and compiling...${NC}"
 bin/restart
